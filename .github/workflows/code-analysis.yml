@@ -1,13 +1,12 @@
 name: Code Analysis
 
 on:
-  pull_request:
-  schedule :
+  push:
+  schedule:
     - cron: '0 7 * * *'
 
 jobs:
   code_analysis_composer:
-    if: github.event_name == 'pull_request'
     name: ${{ matrix.actions.name }} on PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     strategy:
@@ -31,8 +30,6 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          extensions: oauth
-          coverage: none
           php-version: ${{ matrix.php }}
 
       - name: Install Composer dependencies
