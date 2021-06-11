@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  pull_request:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    name: Pest on PHP ${{ matrix.php }}
+    strategy:
+      matrix:
+        php: ['8.0']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          extensions: oauth
+          coverage: none
+          php-version: ${{ matrix.php }}
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v1
+
+      - name: Test php code
+        run: composer pest:test

@@ -1,0 +1,53 @@
+name: Code Analysis
+
+on:
+  pull_request:
+  schedule :
+    - cron: '0 7 * * *'
+
+jobs:
+  code_analysis_composer:
+    if: github.event_name == 'pull_request'
+    name: ${{ matrix.actions.name }} on PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.0']
+
+        actions:
+          -   name: PHP CodeSniffer
+              run: 'composer phpcs'
+
+          -   name: PHPStan
+              run: 'composer phpstan'
+
+          -   name: Rector
+              run: 'composer rector-ci'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          extensions: oauth
+          coverage: none
+          php-version: ${{ matrix.php }}
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v1
+
+      - run: ${{ matrix.actions.run }}
+
+  code_analysis_security:
+    name : PHP Security Checker
+    runs-on : ubuntu-latest
+    steps :
+      - uses : actions/checkout@v2
+      - uses : actions/cache@v2
+        id : cache-db
+        with :
+          path : ~/.symfony/cache
+          key : db
+      - uses : symfonycorp/security-checker-action@v2
