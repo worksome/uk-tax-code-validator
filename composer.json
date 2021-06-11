@@ -15,8 +15,8 @@
         "illuminate/contracts": "^8.46"
     },
     "require-dev": {
-        "worksome/coding-style": "^0.1.7",
-        "pestphp/pest": "^1.4"
+        "pestphp/pest": "^1.4",
+        "worksome/code-sniffer": "^0.1.5"
     },
     "autoload": {
         "psr-4": {
@@ -31,9 +31,6 @@
     "scripts": {
         "phpcs": "vendor/bin/phpcs",
         "phpcbf": "vendor/bin/phpcbf",
-        "phpstan": "vendor/bin/phpstan analyse",
-        "rector-ci": "vendor/bin/rector process --dry-run --ansi",
-        "rector": "vendor/bin/rector process --ansi",
         "pest:test": "pest --colors=always --stop-on-failure"
     }
 }
