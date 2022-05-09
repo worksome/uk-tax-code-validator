@@ -12,8 +12,8 @@
     "require": {
         "php": "^8.0",
         "thecodingmachine/safe": "^2.0",
-        "illuminate/contracts": "^8.46",
-        "illuminate/pipeline": "^8.46"
+        "illuminate/contracts": "^8.46|^9.0",
+        "illuminate/pipeline": "^8.46|^9.0"
     },
     "require-dev": {
         "pestphp/pest": "^1.4",
