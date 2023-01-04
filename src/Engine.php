@@ -16,7 +16,8 @@ class Engine
         $taxCode = $taxCode instanceof TaxCode ? $taxCode : new TaxCode($taxCode);
 
         return $this->validationPipeline($taxCode)
-            ->then(fn(TaxCode $taxCode) => $taxCode->getTaxCode() !== ''
+            ->then(
+                fn(TaxCode $taxCode) => $taxCode->getTaxCode() !== ''
                 ? Response::error('Invalid tax code.')
                 : Response::success('Tax code is valid.')
             );

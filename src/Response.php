@@ -12,8 +12,8 @@ final class Response
     public function __construct(
         private array $successes = [],
         private array $errors = [],
-    )
-    {}
+    ) {
+    }
 
     #[Pure]
     public static function error(string ... $errors): self
