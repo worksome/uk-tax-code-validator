@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.0']
+        php: ['8.2']
 
         actions:
-          -   name: PHP CodeSniffer
-              run: 'composer phpcs'
+          -   name: ECS
+              run: 'composer ecs'
 
     steps:
       - name: Checkout code
