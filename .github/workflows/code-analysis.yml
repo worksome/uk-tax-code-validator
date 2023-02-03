@@ -15,7 +15,7 @@ jobs:
 
         actions:
           -   name: ECS
-              run: 'composer ecs'
+              run: 'composer lint'
 
     steps:
       - name: Checkout code

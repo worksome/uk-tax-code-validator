@@ -6,14 +6,17 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
-    name: Pest on PHP ${{ matrix.php }}
     strategy:
       matrix:
         php: ['8.2']
+        laravel: ['9.*', '10.*']
+        stability: ['prefer-lowest', 'prefer-stable']
+
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.stability }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -22,8 +25,10 @@ jobs:
           coverage: none
           php-version: ${{ matrix.php }}
 
-      - name: Install Composer dependencies
-        uses: ramsey/composer-install@v1
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Test php code
         run: composer test:unit
