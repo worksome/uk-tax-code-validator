@@ -26,7 +26,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update --ansi
+          composer require "illuminate/contracts:${{ matrix.laravel }}" --no-interaction --no-update --ansi
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction --ansi
 
       - name: Test php code
