@@ -2,7 +2,13 @@
 
 use Worksome\UkTaxCodeValidator\Engine;
 
-dataset('Tax codes', [
+it('has valid tax code', function (string $taxCode) {
+    $engine = new Engine();
+
+    $response = $engine->validate($taxCode);
+
+    expect($response->isValid())->toBeTrue();
+})->with([
     // Basic personal allowance
     '1257L', '1257L X', '1257LW1', '1257LM1', 'C11257L', 'C1257LM1',
     // Temporary tax code
@@ -23,12 +29,17 @@ dataset('Tax codes', [
     'NT', 'NTX', 'NTM1',
     // Top scottish rates
     'SD2', 'SD2X',
-
     // Random tests
     'S 123 3 L',
 ]);
 
-dataset('Invalid tax codes', [
+it('can check that tax codes are invalid', function (string $taxCode) {
+    $engine = new Engine();
+
+    $response = $engine->validate($taxCode);
+
+    expect($response->isValid())->toBeFalse();
+})->with([
     'K1257L', // Only one tax code modifier is allowed
     '1257LM', // Only one tax code modifier is allowed
     'CS1257L', // Only one regime income modifier is allowed
@@ -48,19 +59,3 @@ dataset('Invalid tax codes', [
     'CD2', // D2 should only be with scottish modifier
     'NTNTNT', // Repeating NT is not valid
 ]);
-
-it('has valid tax code', function (string $taxCode) {
-    $engine = new Engine();
-
-    $response = $engine->validate($taxCode);
-
-    expect($response->isValid())->toBeTrue();
-})->with('Tax codes');
-
-it('can check that tax codes are invalid', function (string $taxCode) {
-    $engine = new Engine();
-
-    $response = $engine->validate($taxCode);
-
-    expect($response->isValid())->toBeFalse();
-})->with('Invalid tax codes');
