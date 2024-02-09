@@ -5,18 +5,23 @@ on:
 
 jobs:
   setup:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
     strategy:
       matrix:
-        php: ['8.2']
-        laravel: ['10.*']
-        stability: ['prefer-lowest', 'prefer-stable']
-
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.stability }}
+        os: [ ubuntu-latest ]
+        php: [ 8.2, 8.3 ]
+        laravel: [ 10.*, 11.* ]
+        stability: [ prefer-lowest, prefer-stable ]
+        include:
+          - laravel: 10.*
+            testbench: 8.*
+          - laravel: 11.*
+            testbench: 9.*
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -26,8 +31,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "illuminate/contracts:${{ matrix.laravel }}" --no-interaction --no-update --ansi
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction --ansi
 
-      - name: Test php code
+      - name: Execute tests
         run: composer test:unit

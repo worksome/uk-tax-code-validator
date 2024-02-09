@@ -11,13 +11,13 @@
     ],
     "require": {
         "php": "^8.2",
-        "thecodingmachine/safe": "^2.0",
-        "illuminate/contracts": "^10.0",
-        "illuminate/pipeline": "^10.0"
+        "thecodingmachine/safe": "^2.5",
+        "illuminate/contracts": "^10.0 || ^11.0",
+        "illuminate/pipeline": "^10.0 || ^11.0"
     },
     "require-dev": {
-        "pestphp/pest": "^2.2",
-        "worksome/coding-style": "^2.5"
+        "pestphp/pest": "^2.33",
+        "worksome/coding-style": "^2.8"
     },
     "autoload": {
         "psr-4": {
