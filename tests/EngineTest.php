@@ -29,6 +29,8 @@ it('has valid tax code', function (string $taxCode) {
     'NT', 'NTX', 'NTM1',
     // Top scottish rates
     'SD2', 'SD2X',
+    // Advanced scottish rates
+    'SD3', 'SD3X',
     // Random tests
     'S 123 3 L',
 ]);

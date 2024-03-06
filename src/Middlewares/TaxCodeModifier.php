@@ -15,6 +15,7 @@ use Worksome\UkTaxCodeValidator\Rules\NegativePersonalAllowanceRule;
 use Worksome\UkTaxCodeValidator\Rules\NoTaxesRule;
 use Worksome\UkTaxCodeValidator\Rules\RuleInterface;
 use Worksome\UkTaxCodeValidator\Rules\TemporaryTaxCodeRule;
+use Worksome\UkTaxCodeValidator\Rules\AdvancedScottishRateRule;
 use Worksome\UkTaxCodeValidator\Rules\TopScottishRateRule;
 use Worksome\UkTaxCodeValidator\TaxCode;
 
@@ -35,6 +36,7 @@ class TaxCodeModifier implements ModifierInterface
             new MarriageAllowanceTransferredRule($this),
             new HigherRateRule($this),
             new AdditionalRateRule($this),
+            new AdvancedScottishRateRule($this),
             new TopScottishRateRule($this),
             new NoTaxesRule($this),
         ];
