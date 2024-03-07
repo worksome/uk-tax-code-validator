@@ -28,6 +28,8 @@ it('has valid tax code', function (string $taxCode) {
     // Not taxed
     'NT', 'NTX', 'NTM1',
     // Top scottish rates
+    'SD3', 'SD3X',
+    // Advanced scottish rates
     'SD2', 'SD2X',
     // Random tests
     'S 123 3 L',
