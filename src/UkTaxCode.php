@@ -16,6 +16,6 @@ class UkTaxCode implements Rule
 
     public function message(): string
     {
-        return "The :attribute must be a valid UK tax code.";
+        return 'The :attribute must be a valid UK tax code.';
     }
 }
