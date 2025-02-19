@@ -17,7 +17,8 @@
     },
     "require-dev": {
         "pestphp/pest": "^3.7",
-        "worksome/coding-style": "^3.1"
+        "worksome/coding-style": "^3.1",
+        "orchestra/testbench": "^9.11"
     },
     "autoload": {
         "psr-4": {
