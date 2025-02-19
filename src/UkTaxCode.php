@@ -2,20 +2,19 @@
 
 namespace Worksome\UkTaxCodeValidator;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class UkTaxCode implements Rule
+class UkTaxCode implements ValidationRule
 {
-    public function passes($attribute, $value)
+    /** {@inheritdoc} */
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $engine = new Engine();
         $response = $engine->validate($value);
 
-        return $response->isValid();
-    }
-
-    public function message(): string
-    {
-        return 'The :attribute must be a valid UK tax code.';
+        if (! $response->isValid()) {
+            $fail('The :attribute must be a valid UK tax code.')->translate();
+        }
     }
 }
