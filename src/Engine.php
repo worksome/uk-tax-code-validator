@@ -17,7 +17,7 @@ class Engine
 
         return $this->validationPipeline($taxCode)
             ->then(
-                fn(TaxCode $taxCode) => $taxCode->getTaxCode() !== ''
+                fn (TaxCode $taxCode) => $taxCode->getTaxCode() !== ''
                 ? Response::error('Invalid tax code.')
                 : Response::success('Tax code is valid.')
             );
@@ -30,7 +30,7 @@ class Engine
     {
         return $this->validationPipeline(
             new TaxCode($taxCode)
-        )->then(fn(TaxCode $taxCode) => $taxCode->getModifiers());
+        )->then(fn (TaxCode $taxCode) => $taxCode->getModifiers());
     }
 
     private function validationPipeline(TaxCode $taxCode): Pipeline

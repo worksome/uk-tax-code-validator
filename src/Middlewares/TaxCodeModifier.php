@@ -3,9 +3,9 @@
 namespace Worksome\UkTaxCodeValidator\Middlewares;
 
 use Closure;
-use JetBrains\PhpStorm\Pure;
 use Worksome\UkTaxCodeValidator\Response;
 use Worksome\UkTaxCodeValidator\Rules\AdditionalRateRule;
+use Worksome\UkTaxCodeValidator\Rules\AdvancedScottishRateRule;
 use Worksome\UkTaxCodeValidator\Rules\BasicPersonalAllowanceRule;
 use Worksome\UkTaxCodeValidator\Rules\BasicRateRule;
 use Worksome\UkTaxCodeValidator\Rules\HigherRateRule;
@@ -15,7 +15,6 @@ use Worksome\UkTaxCodeValidator\Rules\NegativePersonalAllowanceRule;
 use Worksome\UkTaxCodeValidator\Rules\NoTaxesRule;
 use Worksome\UkTaxCodeValidator\Rules\RuleInterface;
 use Worksome\UkTaxCodeValidator\Rules\TemporaryTaxCodeRule;
-use Worksome\UkTaxCodeValidator\Rules\AdvancedScottishRateRule;
 use Worksome\UkTaxCodeValidator\Rules\TopScottishRateRule;
 use Worksome\UkTaxCodeValidator\TaxCode;
 
@@ -24,7 +23,6 @@ class TaxCodeModifier implements ModifierInterface
     /** @var RuleInterface[] */
     private array $taxCodeRules;
 
-    #[Pure]
     public function __construct()
     {
         $this->taxCodeRules = [
@@ -45,7 +43,7 @@ class TaxCodeModifier implements ModifierInterface
     public function handle(TaxCode $taxCode, Closure $next)
     {
         $validTaxCodeRules = collect($this->taxCodeRules)
-            ->filter(fn(RuleInterface $rule) => $rule->validate($taxCode));
+            ->filter(fn (RuleInterface $rule) => $rule->validate($taxCode));
 
         if ($validTaxCodeRules->count() !== 1) {
             return Response::error("There should only be one tax code, found {$validTaxCodeRules->count()}.");

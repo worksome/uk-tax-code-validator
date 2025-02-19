@@ -15,6 +15,7 @@ class RemoveSpaces
             $cleaned,
             $taxCode->getOriginalTaxCode()
         );
+
         return $next($newTaxCode);
     }
 }

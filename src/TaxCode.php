@@ -2,7 +2,6 @@
 
 namespace Worksome\UkTaxCodeValidator;
 
-use JetBrains\PhpStorm\Pure;
 use Stringable;
 use Worksome\UkTaxCodeValidator\Middlewares\ModifierInterface;
 
@@ -21,7 +20,6 @@ class TaxCode implements Stringable
         $this->originalTaxCode = $originalTaxCode ?? $this->taxCode;
     }
 
-    #[Pure]
     public function getTaxCode(): string
     {
         return $this->taxCode;
@@ -32,13 +30,11 @@ class TaxCode implements Stringable
         return $this->originalTaxCode;
     }
 
-    #[Pure]
     public function __toString()
     {
         return $this->getTaxCode();
     }
 
-    #[Pure]
     public function consume(string $consume, ModifierInterface $modifier): TaxCode
     {
         $modifiers = $this->modifiers;

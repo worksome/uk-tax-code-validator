@@ -1,0 +1,10 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '''
+				#^Class Worksome\\UkTaxCodeValidator\\UkTaxCode implements deprecated interface Illuminate\\Contracts\\Validation\\Rule\:
+				see ValidationRule$#
+			'''
+			identifier: class.implementsDeprecatedInterface
+			count: 1
+			path: src/UkTaxCode.php

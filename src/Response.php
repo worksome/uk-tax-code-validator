@@ -2,8 +2,6 @@
 
 namespace Worksome\UkTaxCodeValidator;
 
-use JetBrains\PhpStorm\Pure;
-
 /**
  * @internal
  */
@@ -15,13 +13,11 @@ final class Response
     ) {
     }
 
-    #[Pure]
     public static function error(string ... $errors): self
     {
         return new self(errors: $errors);
     }
 
-    #[Pure]
     public static function success(string ... $successes): self
     {
         return new self(successes: $successes);
