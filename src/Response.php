@@ -8,8 +8,8 @@ namespace Worksome\UkTaxCodeValidator;
 final class Response
 {
     public function __construct(
-        private array $successes = [],
-        private array $errors = [],
+        private readonly array $successes = [],
+        private readonly array $errors = [],
     ) {
     }
 

@@ -13,7 +13,7 @@ use Worksome\UkTaxCodeValidator\TaxCode;
 class EmergencyCodeModifier implements ModifierInterface
 {
     /** @var RuleInterface[] */
-    private array $emergencyCodeRules;
+    private readonly array $emergencyCodeRules;
 
     public function __construct()
     {

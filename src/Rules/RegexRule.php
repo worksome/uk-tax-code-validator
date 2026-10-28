@@ -9,7 +9,7 @@ use function Safe\preg_match;
 abstract class RegexRule implements RuleInterface
 {
     public function __construct(
-        private ModifierInterface $modifier,
+        private readonly ModifierInterface $modifier,
     ) {
     }
 

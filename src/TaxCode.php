@@ -10,12 +10,12 @@ use Worksome\UkTaxCodeValidator\Middlewares\ModifierInterface;
  */
 class TaxCode implements Stringable
 {
-    private string $originalTaxCode;
+    private readonly string $originalTaxCode;
 
     public function __construct(
-        private string $taxCode,
+        private readonly string $taxCode,
         string|null $originalTaxCode = null,
-        private array $modifiers = [],
+        private readonly array $modifiers = [],
     ) {
         $this->originalTaxCode = $originalTaxCode ?? $this->taxCode;
     }

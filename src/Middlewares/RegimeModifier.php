@@ -12,7 +12,7 @@ use Worksome\UkTaxCodeValidator\TaxCode;
 class RegimeModifier implements ModifierInterface
 {
     /** @var RuleInterface[]  */
-    private array $countryModifierRules;
+    private readonly array $countryModifierRules;
 
     public function __construct()
     {
