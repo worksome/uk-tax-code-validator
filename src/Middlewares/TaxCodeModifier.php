@@ -21,7 +21,7 @@ use Worksome\UkTaxCodeValidator\TaxCode;
 class TaxCodeModifier implements ModifierInterface
 {
     /** @var RuleInterface[] */
-    private array $taxCodeRules;
+    private readonly array $taxCodeRules;
 
     public function __construct()
     {
